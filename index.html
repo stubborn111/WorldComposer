@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="WorldComposer: From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation">
+  <meta name="description" content="WorldComposer: A novel approach for generative high-fidelity simulation with digital cousins for generalizable robot learning and evaluation.">
+  <meta name="keywords" content="robotics, simulation, generative models, digital twins, robot learning, evaluation">
+  <meta name="author" content="Jasper Lu, Zhenhao Shen, Yuanfei Wang, Shugao Liu, Shengqiang Xu, Shawn Xie, Jingkai Xu, Feng Jiang, Jade Yang, Chen Xie, Ruihai Wu">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="WorldComposer Project">
+  <meta property="og:title" content="WorldComposer: From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation">
+  <meta property="og:description" content="WorldComposer: A novel approach for generative high-fidelity simulation with digital cousins for generalizable robot learning and evaluation.">
+  <meta property="og:url" content="https://worldcomposer-project.github.io">
+  <meta property="og:image" content="https://worldcomposer-project.github.io/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="WorldComposer Project Preview">
+  <meta property="article:published_time" content="2026-03-18T00:00:00.000Z">
+  <meta property="article:author" content="WorldComposer Team">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="robotics">
+  <meta property="article:tag" content="simulation">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@WorldComposerProj">
+  <meta name="twitter:creator" content="@WorldComposerProj">
+  <meta name="twitter:title" content="WorldComposer: From Seeing to Simulating">
+  <meta name="twitter:description" content="WorldComposer: A novel approach for generative high-fidelity simulation with digital cousins for generalizable robot learning and evaluation.">
+  <meta name="twitter:image" content="https://worldcomposer-project.github.io/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="WorldComposer Project Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="WorldComposer: From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation">
+  <meta name="citation_author" content="Lu, Jasper">
+  <meta name="citation_author" content="Shen, Zhenhao">
+  <meta name="citation_author" content="Wang, Yuanfei">
+  <meta name="citation_author" content="Liu, Shugao">
+  <meta name="citation_author" content="Xu, Shengqiang">
+  <meta name="citation_author" content="Xie, Shawn">
+  <meta name="citation_author" content="Xu, Jingkai">
+  <meta name="citation_author" content="Jiang, Feng">
+  <meta name="citation_author" content="Yang, Jade">
+  <meta name="citation_author" content="Xie, Chen">
+  <meta name="citation_author" content="Wu, Ruihai">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="under review">
+  <meta name="citation_pdf_url" content="https://worldcomposer-project.github.io/static/pdfs/paper.pdf">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <title>WorldComposer: From Seeing to Simulating | under review</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "WorldComposer: From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation",
+    "description": "WorldComposer: A novel approach for generative high-fidelity simulation with digital cousins for generalizable robot learning and evaluation.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jasper Lu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Zhenhao Shen",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Yuanfei Wang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Shugao Liu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Shengqiang Xu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Shawn Xie",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Jingkai Xu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Feng Jiang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Jade Yang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Chen Xie",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Ruihai Wu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Institution"
+        }
+      }
+    ],
+    "datePublished": "2026-03-18",
+    "publisher": {
+      "@type": "Organization",
+      "name": "under review"
+    },
+    "url": "https://worldcomposer-project.github.io",
+    "image": "https://worldcomposer-project.github.io/static/images/social_preview.png",
+    "keywords": ["robotics", "simulation", "generative models", "digital twins", "robot learning", "evaluation"],
+    "abstract": "WorldComposer is a novel approach for generative high-fidelity simulation with digital cousins for generalizable robot learning and evaluation. This work addresses the challenge of creating realistic simulation environments that can effectively transfer to real-world robot tasks. By leveraging generative models, WorldComposer creates digital twins of real-world environments, enabling robots to learn in simulation with high fidelity to real-world conditions. The system provides a unified framework for generating diverse and realistic environments, allowing for more generalizable robot learning. Experimental results demonstrate that robots trained in WorldComposer simulations show significant improvements in performance when deployed in real-world settings compared to traditional simulation approaches.",
+    "citation": "@inproceedings{WorldComposer2026, title={WorldComposer: From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation}, author={Jasper Lu and Zhenhao Shen and Yuanfei Wang and Shugao Liu and Shengqiang Xu and Shawn Xie and Jingkai Xu and Feng Jiang and Jade Yang and Chen Xie and Ruihai Wu}, booktitle={under review}, year={2026}",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://worldcomposer-project.github.io"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Robotics"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Simulation"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "WorldComposer Project",
+    "url": "https://worldcomposer-project.github.io",
+    "logo": "https://worldcomposer-project.github.io/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/WorldComposerProj",
+      "https://github.com/worldcomposer-project"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title"><span style="font-size: 1.5em;">WorldComposer</span></h1>
+            <h2 class="title is-3 publication-subtitle">From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation</h2>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="#" target="_blank">Jasper Lu</a>,</span>
+                <span class="author-block">
+                  <a href="#" target="_blank">Zhenhao Shen</a>,</span>
+                  <span class="author-block">
+                    <a href="#" target="_blank">Yuanfei Wang</a>,</span>
+                    <span class="author-block">
+                      <a href="#" target="_blank">Shugao Liu</a>,</span>
+                      <span class="author-block">
+                        <a href="#" target="_blank">Shengqiang Xu</a>,</span>
+                        <span class="author-block">
+                          <a href="#" target="_blank">Shawn Xie</a>,</span>
+                          <span class="author-block">
+                            <a href="#" target="_blank">Jingkai Xu</a>,</span>
+                            <span class="author-block">
+                              <a href="#" target="_blank">Feng Jiang</a>,</span>
+                              <span class="author-block">
+                                <a href="#" target="_blank">Jade Yang</a>,</span>
+                                <span class="author-block">
+                                  <a href="#" target="_blank">Chen Xie</a>,</span>
+                                  <span class="author-block">
+                                    <a href="#" target="_blank">Ruihai Wu</a>
+                                  </span>
+                                  </div>
+
+                                  <div class="is-size-5 publication-authors">
+                                    <span class="author-block">under review</span>
+                                  </div>
+
+                                  <div class="column has-text-centered">
+                                    <div class="publication-links">
+                                          <!-- TODO: Update with your paper PDF -->
+                                      <span class="link-block">
+                                        <a href="static/pdfs/paper.pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                          <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                      </a>
+                                    </span>
+
+                                    <!-- TODO: Add your supplementary material PDF or remove this section -->
+                                    <span class="link-block">
+                                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                                      class="external-link button is-normal is-rounded is-dark">
+                                      <span class="icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                      </span>
+                                      <span>Supplementary</span>
+                                    </a>
+                                  </span>
+
+                                  <!-- TODO: Replace with your GitHub repository URL -->
+                                  <span class="link-block">
+                                    <a href="https://github.com/worldcomposer-project" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                      <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>Code</span>
+                                  </a>
+                                </span>
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Video presentation -->
+                <section class="hero is-small is-light">
+                  <div class="hero-body">
+                    <div class="container is-max-desktop">
+                      <!-- Paper video. -->
+                      <h2 class="title is-3 has-text-centered">Video Presentation</h2>
+                      <div class="columns is-centered has-text-centered">
+                        <div class="column is-four-fifths">
+                          
+                          <div class="publication-video" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px;">
+                            <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" controls>
+                              <source src="video.mp4" type="video/mp4">
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- End video presentation -->
+
+                <!-- Teaser image-->
+                <section class="hero">
+                  <div class="container is-max-desktop">
+                    <div class="hero-body">
+                      <h2 class="title is-3 has-text-centered">Overview</h2>
+                      <img src="Pic/00_Teaser_v9.pdf" alt="WorldComposer Teaser" loading="lazy" style="width: 100%; max-height: 600px; object-fit: contain;">
+                      <h2 class="subtitle has-text-centered">
+                        WorldComposer: A novel approach for generative high-fidelity simulation with digital cousins for generalizable robot learning and evaluation.
+                      </h2>
+                    </div>
+                  </div>
+                </section>
+                <!-- End teaser image -->
+
+                <!-- Paper abstract -->
+                <section class="section hero is-light">
+                  <div class="container is-max-desktop">
+                    <div class="columns is-centered has-text-centered">
+                      <div class="column is-four-fifths">
+                        <h2 class="title is-3">Abstract</h2>
+                        <div class="content has-text-justified">
+                          <p>
+                            WorldComposer is a novel approach for generative high-fidelity simulation with digital cousins for generalizable robot learning and evaluation. This work addresses the challenge of creating realistic simulation environments that can effectively transfer to real-world robot tasks. By leveraging generative models, WorldComposer creates digital twins of real-world environments, enabling robots to learn in simulation with high fidelity to real-world conditions. The system provides a unified framework for generating diverse and realistic environments, allowing for more generalizable robot learning. Experimental results demonstrate that robots trained in WorldComposer simulations show significant improvements in performance when deployed in real-world settings compared to traditional simulation approaches.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- End paper abstract -->
+
+                <!-- Pipeline -->
+                <section class="hero is-small">
+                  <div class="hero-body">
+                    <div class="container is-max-desktop">
+                      <h2 class="title is-3 has-text-centered">Pipeline</h2>
+                      <img src="Pic/Marble_pipeline_v6.pdf" alt="WorldComposer Pipeline" loading="lazy" style="width: 100%; max-height: 600px; object-fit: contain;">
+                    </div>
+                  </div>
+                </section>
+                <!-- End Pipeline -->
+
+                <!-- Task Visualization -->
+                <section class="hero is-small is-light">
+                  <div class="hero-body">
+                    <div class="container is-max-desktop">
+                      <h2 class="title is-3 has-text-centered">Task Visualization</h2>
+                      <div class="block">
+                        <div style="height: 500px; display: flex; align-items: center; justify-content: center;">
+                          <img src="Pic/Marble_SimBigPic_5x4.pdf" alt="Simulation Task" loading="lazy" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                        </div>
+                        <h3 class="subtitle has-text-centered">
+                          Simulation Task
+                        </h3>
+                      </div>
+                      <div class="block">
+                        <div style="height: 500px; display: flex; align-items: center; justify-content: center;">
+                          <img src="Pic/Marble_real.pdf" alt="Real-world Task" loading="lazy" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                        </div>
+                        <h3 class="subtitle has-text-centered">
+                          Real-world Task
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- End Task Visualization -->
+
+                <!-- Results -->
+                <section class="hero is-small">
+                  <div class="hero-body">
+                    <div class="container is-max-desktop">
+                      <h2 class="title is-3 has-text-centered">Results</h2>
+                      <div class="columns">
+                        <div class="column">
+                          <div style="height: 350px; display: flex; align-items: center; justify-content: center;">
+                            <img src="Pic/Correlation_Final.pdf" alt="Correlation Analysis" loading="lazy" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                          </div>
+                          <h3 class="subtitle has-text-centered">
+                            Correlation Analysis
+                          </h3>
+                        </div>
+                        <div class="column">
+                          <div style="height: 350px; display: flex; align-items: center; justify-content: center;">
+                            <img src="Pic/Scaling.pdf" alt="Scaling Analysis" loading="lazy" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                          </div>
+                          <h3 class="subtitle has-text-centered">
+                            Scaling Analysis
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- End Results -->
+
+                <!--BibTex citation -->
+                  <section class="section hero is-light" id="BibTeX">
+                    <div class="container is-max-desktop content">
+                      <div class="bibtex-header">
+                        <h2 class="title">BibTeX</h2>
+                        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+                          <i class="fas fa-copy"></i>
+                          <span class="copy-text">Copy</span>
+                        </button>
+                      </div>
+                      <pre id="bibtex-code"><code>@inproceedings{WorldComposer2026,
+  title={WorldComposer: From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation},
+  author={Jasper Lu and Zhenhao Shen and Yuanfei Wang and Shugao Liu and Shengqiang Xu and Shawn Xie and Jingkai Xu and Feng Jiang and Jade Yang and Chen Xie and Ruihai Wu},
+  booktitle={under review},
+  year={2026},
+  url={https://worldcomposer-project.github.io}
+}</code></pre>
+                    </div>
+                  </section>
+                  <!--End BibTex citation -->
+
+                  <footer class="footer">
+                  <div class="container">
+                    <div class="columns is-centered">
+                      <div class="column is-8">
+                        <div class="content">
+
+                          <p>
+                            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                            Commons Attribution-ShareAlike 4.0 International License</a>.
+                          </p>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </footer>
+
+                <!-- Statcounter tracking code -->
+                  
+                <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+                  <!-- End of Statcounter Code -->
+
+                  </body>
+                  </html>
+
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/stubborn111/WorldComposer_Project_Page.git
+git push -u origin main
